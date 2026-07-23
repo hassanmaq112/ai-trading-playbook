@@ -1,0 +1,18 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<style>html,body{margin:0;height:100%;overflow:hidden;background:radial-gradient(130% 130% at 50% 20%,#0c1226 0%,#060711 74%);font-family:ui-sans-serif,system-ui}
+.wrap{display:flex;flex-direction:column;height:100vh;padding:3.6% 4% 2.4%}
+.t{font:700 .74rem/1.25 ui-monospace,monospace;letter-spacing:.13em;text-transform:uppercase;color:rgba(255,255,255,.62);margin:0 0 .05rem .2rem}
+.s{font:600 .62rem/1.3 ui-monospace,monospace;letter-spacing:.05em;color:rgba(60,255,208,.6);margin:0 0 .2rem .2rem}
+#pie{flex:1;min-height:0}</style></head>
+<body><div class="wrap"><div class="t">Documented Claude-Code build: 5 strategies backtested, 1 survived</div><div class="s">dev.to · "14 Sessions, 961 Tool Calls, 1 Surviving Strategy"</div><div id="pie"></div></div>
+<script src="https://unpkg.com/echarts@5.5.0/dist/echarts.min.js"></script>
+<script>
+(function(){var MINT='#3cffd0';
+var p=echarts.init(document.getElementById('pie'));
+var pOpt={backgroundColor:'transparent',tooltip:{trigger:'item',formatter:'{b}: {c} of 5'},legend:{textStyle:{color:'#cdd',fontSize:13},bottom:2,itemGap:26},color:[MINT,'rgba(255,77,109,.72)'],
+ graphic:[{type:'text',left:'center',top:'37%',style:{text:'1 / 5',fill:'#e7ecf5',fontSize:34,fontWeight:800,fontFamily:'ui-sans-serif,system-ui'}},{type:'text',left:'center',top:'49%',style:{text:'survived',fill:'#3cffd0',fontSize:12,fontWeight:600,fontFamily:'ui-monospace,monospace'}}],
+ series:[{type:'pie',radius:['46%','68%'],center:['50%','44%'],itemStyle:{borderColor:'#06070f',borderWidth:4},label:{show:false},labelLine:{show:false},data:[{value:1,name:'Survived: EMA momentum, +0.32% / 90d, 33% win'},{value:4,name:'Failed / unprofitable'}],animationType:'scale',animationEasing:'elasticOut',animationDuration:1200}]};
+function play(){p.setOption(pOpt,true);}
+play(); setInterval(play,7000);
+window.addEventListener('resize',function(){p.resize();});})();
+</script></body></html>

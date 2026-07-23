@@ -1,0 +1,20 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<style>html,body{margin:0;height:100%;overflow:hidden;background:radial-gradient(130% 130% at 50% 20%,#0c1226 0%,#060711 74%);font-family:ui-sans-serif,system-ui}
+.wrap{display:flex;flex-direction:column;height:100vh;padding:3.6% 4% 2.6%}
+.t{font:700 .74rem/1.25 ui-monospace,monospace;letter-spacing:.13em;text-transform:uppercase;color:rgba(255,255,255,.62);margin:0 0 .05rem .2rem}
+.s{font:600 .62rem/1.3 ui-monospace,monospace;letter-spacing:.05em;color:rgba(60,255,208,.6);margin:0 0 .25rem .2rem}
+#feas{flex:1;min-height:0}</style></head>
+<body><div class="wrap"><div class="t">Risk-adjusted feasibility for a technical solo operator</div><div class="s">Relative and illustrative: encodes the report's judgment, not a promise</div><div id="feas"></div></div>
+<script src="https://unpkg.com/echarts@5.5.0/dist/echarts.min.js"></script>
+<script>
+(function(){var MINT='#3cffd0';
+function gH(c1,c2){return new echarts.graphic.LinearGradient(0,0,1,0,[{offset:0,color:c1},{offset:1,color:c2}]);}
+var f=echarts.init(document.getElementById('feas'));
+var fOpt={backgroundColor:'transparent',grid:{left:6,right:40,top:12,bottom:12,containLabel:true},tooltip:{trigger:'axis',axisPointer:{type:'shadow'}},
+ xAxis:Object.assign({type:'value',max:100,axisLabel:{color:'rgba(255,255,255,.5)',fontSize:12}},{axisLine:{lineStyle:{color:'rgba(255,255,255,.18)'}},splitLine:{lineStyle:{color:'rgba(255,255,255,.06)'}}}),
+ yAxis:Object.assign({type:'category',data:['#5 AI research layer','#4 Funded prop','#3 Systematic trend','#2 Delta-neutral carry','#1 Build & sell tools'],axisLabel:{color:'rgba(255,255,255,.82)',fontSize:13,fontWeight:600}},{axisLine:{lineStyle:{color:'rgba(255,255,255,.18)'}},splitLine:{show:false}}),
+ series:[{type:'bar',data:[40,45,62,78,95],barWidth:'58%',itemStyle:{borderRadius:[0,7,7,0],color:gH('rgba(139,92,246,.55)',MINT)},label:{show:true,position:'right',color:'#e7ecf5',fontWeight:700},animationDelay:function(i){return i*120;}}],animationDuration:900,animationEasing:'cubicOut'};
+function play(){f.setOption(fOpt,true);}
+play(); setInterval(play,7000);
+window.addEventListener('resize',function(){f.resize();});})();
+</script></body></html>

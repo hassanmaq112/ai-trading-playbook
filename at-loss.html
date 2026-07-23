@@ -1,0 +1,30 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<style>html,body{margin:0;height:100%;overflow:hidden;background:radial-gradient(130% 130% at 50% 18%,#0c1226 0%,#060711 74%);font-family:ui-sans-serif,system-ui}
+.wrap{display:flex;gap:1.4rem;align-items:stretch;justify-content:center;height:100vh;padding:3.4% 3% 2.6%}
+.card{flex:1;display:flex;flex-direction:column;min-width:0}
+.card .t{font:700 .72rem/1.25 ui-monospace,monospace;letter-spacing:.13em;text-transform:uppercase;color:rgba(255,255,255,.62);margin:0 0 .05rem .2rem}
+.card .s{font:600 .6rem/1.3 ui-monospace,monospace;letter-spacing:.05em;color:rgba(60,255,208,.6);margin:0 0 .3rem .2rem}
+.c{flex:1;min-height:0}#bars{flex:1.15}</style></head>
+<body><div class="wrap">
+<div class="card" id="barsCard"><div class="t">Retail short-term traders: share who lose / fail to profit</div><div class="s">Taiwan (Barber/Odean) · Brazil (Chague) · ESMA · UK brokers · eToro</div><div id="bars" class="c"></div></div>
+<div class="card"><div class="t">AI news-headline strategy: return collapses under real fees</div><div class="s">Lopez-Lira and Tang, arXiv 2304.07619 · 500% paper, then near zero after costs</div><div id="decay" class="c"></div></div>
+</div>
+<script src="https://unpkg.com/echarts@5.5.0/dist/echarts.min.js"></script>
+<script>
+(function(){var MINT='#3cffd0',VIO='#8b5cf6',PINK='#ff4d6d';
+function g(c1,c2){return new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:c1},{offset:1,color:c2}]);}
+function ax(){return {axisLine:{lineStyle:{color:'rgba(255,255,255,.18)'}},axisLabel:{color:'rgba(255,255,255,.62)',fontSize:12},splitLine:{lineStyle:{color:'rgba(255,255,255,.06)'}}};}
+var b=echarts.init(document.getElementById('bars'));
+var bOpt={backgroundColor:'transparent',grid:{left:44,right:16,top:26,bottom:52},tooltip:{trigger:'axis',valueFormatter:function(v){return v+'%';}},
+ xAxis:Object.assign({type:'category',data:['Taiwan\nday-traders','Brazil\nfutures 300d+','ESMA\nCFD accts','UK broker\navg','eToro'],axisLabel:{color:'rgba(255,255,255,.62)',fontSize:11,interval:0,lineHeight:14}},{axisLine:{lineStyle:{color:'rgba(255,255,255,.18)'}},splitLine:{lineStyle:{color:'rgba(255,255,255,.06)'}}}),
+ yAxis:Object.assign({type:'value',max:100,axisLabel:{formatter:'{value}%'}},ax()),
+ series:[{type:'bar',data:[99,97,84,78,50],barWidth:'54%',itemStyle:{borderRadius:[6,6,0,0],color:g(PINK,'rgba(139,92,246,.5)')},label:{show:true,position:'top',color:'#e7ecf5',fontWeight:700,formatter:'{c}%'},animationDelay:function(i){return i*110;}}],animationDuration:900,animationEasing:'cubicOut'};
+var d=echarts.init(document.getElementById('decay'));
+var dOpt={backgroundColor:'transparent',grid:{left:54,right:22,top:30,bottom:38},tooltip:{trigger:'axis',valueFormatter:function(v){return v+'%';}},
+ xAxis:Object.assign({type:'category',boundaryGap:false,data:['Paper\n(no costs)','+ Transaction\ncosts','Realistic\nnet'],axisLabel:{color:'rgba(255,255,255,.62)',fontSize:11,interval:0,lineHeight:14}},{axisLine:{lineStyle:{color:'rgba(255,255,255,.18)'}},splitLine:{lineStyle:{color:'rgba(255,255,255,.06)'}}}),
+ yAxis:Object.assign({type:'value',axisLabel:{formatter:'{value}%'}},ax()),
+ series:[{type:'line',smooth:true,symbol:'circle',symbolSize:11,data:[500,50,2],lineStyle:{width:4,color:MINT,shadowColor:MINT,shadowBlur:16},itemStyle:{color:MINT,borderColor:'#06070f',borderWidth:2},label:{show:true,position:'top',color:'#e7ecf5',fontWeight:700,formatter:'{c}%'},areaStyle:{color:g('rgba(60,255,208,.5)','rgba(60,255,208,0)')},animationDuration:1700,animationEasing:'cubicOut'}]};
+function play(){b.setOption(bOpt,true);d.setOption(dOpt,true);}
+play(); setInterval(play,7000);
+window.addEventListener('resize',function(){b.resize();d.resize();});})();
+</script></body></html>
